@@ -30,7 +30,7 @@ namespace SLS302_Project
         private double ttr = -1;
         private int[] wordCount = new int[4];
         private double[] ratios = new double[4];
-        private bool debugging = true;
+        private bool debugging = false;
         MaxentTagger tagger;
 
         DataSet set = new DataSet("AllFiles");
@@ -318,6 +318,7 @@ namespace SLS302_Project
             string[] files = openFileDialog1.FileNames;
 
             if (debugging) { debugBox.Text = "Opening excel file"; debugBox.Update(); }
+
             FileStream stream = System.IO.File.Open(openFileDialog1.FileNames[0], FileMode.Open, FileAccess.Read);
             //Choose one of either 1 or 2
             //1. Reading from a binary Excel file ('97-2003 format; *.xls)
@@ -580,7 +581,7 @@ namespace SLS302_Project
             chart1.Series.Clear();
             chart1.Series.Add("test");
             chart1.Series["test"].ChartType = SeriesChartType.Line;
-            chart1.Series["test"].IsXValueIndexed = true;
+            chart1.Series["test"].IsXValueIndexed = false;
             
             chart1.Series["test"].XValueMember = chart1_xBox.Text;
             chart1.Series["test"].YValueMembers = chart1_yBox.Text;
@@ -589,6 +590,14 @@ namespace SLS302_Project
 
             
             chart1.DataBind();
+            chart1.Series["test"].Sort(PointSortOrder.Ascending, "X");
+       //     chart1.Series["test"].
+
+        }
+
+        private void essayBox_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

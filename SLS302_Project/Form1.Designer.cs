@@ -47,8 +47,9 @@
             this.debugBox = new System.Windows.Forms.TextBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.essayBox = new System.Windows.Forms.RichTextBox();
+            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.essayBox = new System.Windows.Forms.RichTextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
@@ -70,11 +71,14 @@
             this.dataColumn7 = new System.Data.DataColumn();
             this.SingleTaggingContainer = new System.Windows.Forms.SplitContainer();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.contextMenuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
+            this.splitContainer2.Panel1.SuspendLayout();
+            this.splitContainer2.Panel2.SuspendLayout();
+            this.splitContainer2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -89,10 +93,6 @@
             this.SingleTaggingContainer.Panel1.SuspendLayout();
             this.SingleTaggingContainer.Panel2.SuspendLayout();
             this.SingleTaggingContainer.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
-            this.splitContainer2.Panel1.SuspendLayout();
-            this.splitContainer2.Panel2.SuspendLayout();
-            this.splitContainer2.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
@@ -242,17 +242,25 @@
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(1328, 548);
             this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "tabPage1";
+            this.tabPage1.Text = "Table View";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // essayBox
+            // splitContainer2
             // 
-            this.essayBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.essayBox.Location = new System.Drawing.Point(0, 0);
-            this.essayBox.Name = "essayBox";
-            this.essayBox.Size = new System.Drawing.Size(245, 542);
-            this.essayBox.TabIndex = 4;
-            this.essayBox.Text = "Select a row to display the essay.";
+            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer2.Location = new System.Drawing.Point(3, 3);
+            this.splitContainer2.Name = "splitContainer2";
+            // 
+            // splitContainer2.Panel1
+            // 
+            this.splitContainer2.Panel1.Controls.Add(this.dataGridView1);
+            // 
+            // splitContainer2.Panel2
+            // 
+            this.splitContainer2.Panel2.Controls.Add(this.essayBox);
+            this.splitContainer2.Size = new System.Drawing.Size(1322, 542);
+            this.splitContainer2.SplitterDistance = 1073;
+            this.splitContainer2.TabIndex = 5;
             // 
             // dataGridView1
             // 
@@ -268,6 +276,16 @@
             this.dataGridView1.TabIndex = 3;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
+            // essayBox
+            // 
+            this.essayBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.essayBox.Location = new System.Drawing.Point(0, 0);
+            this.essayBox.Name = "essayBox";
+            this.essayBox.Size = new System.Drawing.Size(245, 542);
+            this.essayBox.TabIndex = 4;
+            this.essayBox.Text = "Select a row to display an essay.";
+            this.essayBox.TextChanged += new System.EventHandler(this.essayBox_TextChanged);
+            // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.splitContainer1);
@@ -277,7 +295,7 @@
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(1328, 548);
             this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "tabPage2";
+            this.tabPage2.Text = "Graph View";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // splitContainer1
@@ -467,23 +485,6 @@
             this.openFileDialog1.FileName = "ICNALE_SW_V1.0_Infosheet.xlsx";
             this.openFileDialog1.Multiselect = true;
             // 
-            // splitContainer2
-            // 
-            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer2.Location = new System.Drawing.Point(3, 3);
-            this.splitContainer2.Name = "splitContainer2";
-            // 
-            // splitContainer2.Panel1
-            // 
-            this.splitContainer2.Panel1.Controls.Add(this.dataGridView1);
-            // 
-            // splitContainer2.Panel2
-            // 
-            this.splitContainer2.Panel2.Controls.Add(this.essayBox);
-            this.splitContainer2.Size = new System.Drawing.Size(1322, 542);
-            this.splitContainer2.SplitterDistance = 1073;
-            this.splitContainer2.TabIndex = 5;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -501,6 +502,10 @@
             this.panel1.PerformLayout();
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
+            this.splitContainer2.Panel1.ResumeLayout(false);
+            this.splitContainer2.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
+            this.splitContainer2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
@@ -516,10 +521,6 @@
             this.SingleTaggingContainer.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.SingleTaggingContainer)).EndInit();
             this.SingleTaggingContainer.ResumeLayout(false);
-            this.splitContainer2.Panel1.ResumeLayout(false);
-            this.splitContainer2.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
-            this.splitContainer2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
