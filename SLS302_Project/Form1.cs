@@ -36,6 +36,8 @@ namespace SLS302_Project
         DataSet set = new DataSet("AllFiles");
         System.Data.DataTable mainTable = new System.Data.DataTable("student");
 
+        System.Data.DataSet categoryTables = new System.Data.DataSet();
+
 
         public Form1()
         {
@@ -54,7 +56,6 @@ namespace SLS302_Project
 
             UniqueConstraint custUnique = new UniqueConstraint(new DataColumn[] { mainTable.Columns["Code"] });
             mainTable.Constraints.Add(custUnique);
-
             
         }
 
@@ -98,6 +99,10 @@ namespace SLS302_Project
                 {
                     chart1_xBox.Items.Add(cl.ColumnName.ToString());
                     chart1_yBox.Items.Add(cl.ColumnName.ToString());
+                }
+                else
+                {
+                    categoryBox.Items.Add(cl.ColumnName.ToString());
                 }
             }
         }
@@ -389,13 +394,16 @@ namespace SLS302_Project
                 debugBox.Update();
             }
 
+            outputBox.Text = "Done.";
+            outputBox.Update();
 
 
-            
-       //     dataGridView2.DataSource = dtFinal; // dataset */
 
 
-            
+            //     dataGridView2.DataSource = dtFinal; // dataset */
+
+
+
         }
 
         public string runPOS(string text, System.Windows.Forms.TextBox debugBox)
@@ -578,26 +586,76 @@ namespace SLS302_Project
 
         private void button2_Click(object sender, EventArgs e)
         {
+            outputBox.Text = "Drawing graph...";
+            outputBox.Update();
+
             chart1.Series.Clear();
-            chart1.Series.Add("test");
-            chart1.Series["test"].ChartType = SeriesChartType.Line;
-            chart1.Series["test"].IsXValueIndexed = false;
-            
-            chart1.Series["test"].XValueMember = chart1_xBox.Text;
-            chart1.Series["test"].YValueMembers = chart1_yBox.Text;
 
-            chart1.DataSource = mainTable;
+            string xAxis = chart1_xBox.Text;
+            string yAxis = chart1_yBox.Text;
 
+
+         /*   if (!categoryBox.Text.Equals(""))
+            {
+                DataView view = new DataView(mainTable);
+                System.Data.DataTable distinctValues = view.ToTable(true, categoryBox.Text);
+                //foreach()
+                if (debugging)
+                {
+                    debugBox.Text = "";
+                    foreach (DataRow row in distinctValues.Rows)
+                        debugBox.Text += row[categoryBox.Text];
+                    debugBox.Update();
+                }
+
+                foreach (DataRow row in distinctValues.Rows)
+                {
+                    string category = "" + row[categoryBox.Text];
+                    categoryTables = new DataSet();
+
+                    vfSystem.Data.DataView view = new System.Data.DataView(table);
+                    System.Data.DataTable dt = view.ToTable("Selected", false, "col1", "col2", "col6", "col7", "col3");
+
+                    categoryTables.Tables.Add(dt);
+
+                    dt.Columns.Add("" + xAxis);
+                    dt.Columns.Add("" + yAxis);
+
+                    DataRow[] foundRows;
+                    foundRows = mainTable.query("" + xAxis + ", " + yAxis + "where" + categoryBox.Text + " =  \'" + row[categoryBox.Text] + "\'"); //Get matching rows from tables
+
+                    foreach (DataRow fr in foundRows)
+                    {
+                        dt.Rows.Add(fr.ItemArray);
+                    }
+
+                    chart1.Series.Add(category);
+                    chart1.Series[category].ChartType = SeriesChartType.Line;
+                    chart1.Series[category].IsXValueIndexed = false;
+
+                    chart1.Series[category].XValueMember = xAxis;
+                    chart1.Series[category].YValueMembers = yAxis;
+                }
+                    chart1.DataSource = categoryTables;
+            }
+            else
+            {*/
+                chart1.Series.Add("test");
+                chart1.Series["test"].ChartType = SeriesChartType.Line;
+                chart1.Series["test"].IsXValueIndexed = false;
+
+                chart1.Series["test"].XValueMember = chart1_xBox.Text;
+                chart1.Series["test"].YValueMembers = chart1_yBox.Text;
+
+                chart1.DataSource = mainTable;
             
+
             chart1.DataBind();
             chart1.Series["test"].Sort(PointSortOrder.Ascending, "X");
-       //     chart1.Series["test"].
 
-        }
-
-        private void essayBox_TextChanged(object sender, EventArgs e)
-        {
-
+         //   }
+            outputBox.Text = "Done.";
+            outputBox.Update();
         }
     }
 }

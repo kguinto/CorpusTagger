@@ -53,6 +53,7 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.categoryBox = new System.Windows.Forms.ComboBox();
             this.chart1_xBox = new System.Windows.Forms.ComboBox();
             this.button2 = new System.Windows.Forms.Button();
             this.chart1_yBox = new System.Windows.Forms.ComboBox();
@@ -284,7 +285,6 @@
             this.essayBox.Size = new System.Drawing.Size(245, 542);
             this.essayBox.TabIndex = 4;
             this.essayBox.Text = "Select a row to display an essay.";
-            this.essayBox.TextChanged += new System.EventHandler(this.essayBox_TextChanged);
             // 
             // tabPage2
             // 
@@ -310,6 +310,7 @@
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.Controls.Add(this.categoryBox);
             this.splitContainer1.Panel2.Controls.Add(this.chart1_xBox);
             this.splitContainer1.Panel2.Controls.Add(this.button2);
             this.splitContainer1.Panel2.Controls.Add(this.chart1_yBox);
@@ -335,6 +336,15 @@
             this.chart1.TabIndex = 6;
             this.chart1.Text = "chart1";
             // 
+            // categoryBox
+            // 
+            this.categoryBox.FormattingEnabled = true;
+            this.categoryBox.Location = new System.Drawing.Point(14, 232);
+            this.categoryBox.Name = "categoryBox";
+            this.categoryBox.Size = new System.Drawing.Size(121, 21);
+            this.categoryBox.TabIndex = 10;
+            this.categoryBox.Visible = false;
+            // 
             // chart1_xBox
             // 
             this.chart1_xBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -356,7 +366,7 @@
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(163, 47);
             this.button2.TabIndex = 9;
-            this.button2.Text = "button2";
+            this.button2.Text = "Draw Graph";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
@@ -566,5 +576,6 @@
         private System.Windows.Forms.ComboBox chart1_xBox;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.SplitContainer splitContainer2;
+        private System.Windows.Forms.ComboBox categoryBox;
     }
 }
