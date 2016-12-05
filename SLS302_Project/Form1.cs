@@ -30,7 +30,7 @@ namespace SLS302_Project
         private double ttr = -1;
         private int[] wordCount = new int[4];
         private double[] ratios = new double[4];
-        private bool debugging = false;
+        private bool debugging = true;
         MaxentTagger tagger;
 
         DataSet set = new DataSet("AllFiles");
@@ -81,11 +81,21 @@ namespace SLS302_Project
                 debugBox.Visible = false;
 
             /*Load Tagger*/
-            var jarRoot = @"C:\Users\Kirk\Documents\Visual Studio 2015\Projects\SLS302_Project\stanford-corenlp-3.6.0-models\edu\stanford\nlp";
-            var modelsDirectory = jarRoot + @"\models";
+            // var jarRoot = @"C:\Users\Kirk\Documents\Visual Studio 2015\Projects\SLS302_Project\stanford-corenlp-3.6.0-models\edu\stanford\nlp";
+            //  var modelsDirectory = jarRoot +
+            //   var projectFolder = Directory.GetCurrentDirectory();
+            //   var modelsDirectory = projectFolder + @"\stanford-corenlp-3.6.0-models\edu\stanford\nlp\models";
+            //Current directory: C:\Users\Kirk\Documents\GitHub\CorpusTagger\SLS302_Project\bin\Release
+            //C:\Users\Kirk\Documents\GitHub\CorpusTagger\stanford-corenlp-3.6.0-models\edu\stanford\nlp\models
+            DialogResult result = loadModelDialog.ShowDialog(); // Show the dialog.
+            var taggerDirectory = loadModelDialog.FileName;
 
-            if (debugging) { debugBox.Text = "Loading Tagger"; debugBox.Update(); }
-            tagger = new MaxentTagger(modelsDirectory + @"\english-left3words-distsim.tagger");
+            ///          if (debugging) { debugBox.Text = "Loading Tagger"; debugBox.Update(); }
+            if (debugging) { debugBox.Text = "Current directory: " + Directory.GetCurrentDirectory(); debugBox.Update(); }
+            ///          if (debugging) { debugBox.Text = "Loading Tagger"; debugBox.Update(); }
+            //          tagger = new MaxentTagger(modelsDirectory + @"\english-left3words-distsim.tagger");
+            if (debugging) { debugBox.Text = "Tagger directory: " + taggerDirectory; debugBox.Update(); }
+            tagger = new MaxentTagger(taggerDirectory);
 
             dataGridView1.DataSource = mainTable;
             dataGridView1.Columns["Text"].Visible = false;
