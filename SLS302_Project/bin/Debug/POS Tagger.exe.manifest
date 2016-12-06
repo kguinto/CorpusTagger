@@ -451,14 +451,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="POS Tagger.exe" size="99240">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="POS Tagger.exe" size="99752">
       <assemblyIdentity name="POS Tagger" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>6M2OuRN5RIUEsUIReuvEYCeyuFPh/6totSXN1zCpXn0=</dsig:DigestValue>
+        <dsig:DigestValue>SgiboMeODR8ggzEsZZe1kWTAwaGe4VawfPcdH2Z6JY4=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

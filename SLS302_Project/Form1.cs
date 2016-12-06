@@ -29,8 +29,8 @@ namespace SLS302_Project
         //        private ArrayList lemmaList = new ArrayList();
         private double ttr = -1;
         private int[] wordCount = new int[4];
-        private double[] ratios = new double[4];
-        private bool debugging = true;
+        private double[] ratios = new double[5];
+        private bool debugging = false;
         MaxentTagger tagger;
 
         DataSet set = new DataSet("AllFiles");
@@ -53,6 +53,7 @@ namespace SLS302_Project
             mainTable.Columns.Add("VerbRatio", typeof(double));
             mainTable.Columns.Add("AdjRatio", typeof(double));
             mainTable.Columns.Add("AdvRatio", typeof(double));
+            mainTable.Columns.Add("ContentWordRatio", typeof(double));
 
             UniqueConstraint custUnique = new UniqueConstraint(new DataColumn[] { mainTable.Columns["Code"] });
             mainTable.Constraints.Add(custUnique);
@@ -257,7 +258,8 @@ namespace SLS302_Project
                         row["NounRatio"] = ratios[0];  // Noun Ratio
                         row["VerbRatio"] = ratios[1]; // Verb Ratio
                         row["AdjRatio"] = ratios[2]; // Adj Ratio
-                        row["AdvRatio"] = ratios[3]; //Adv Ratio        
+                        row["AdvRatio"] = ratios[3]; //Adv Ratio 
+                        row["ContentWordRatio"] = ratios[4];      
 
                         try
                         {
@@ -565,12 +567,14 @@ namespace SLS302_Project
 
         public  double[] getRatios(int[] wc, ArrayList wl)
         {
-            double[] toReturn = new double[4];
+            double[] toReturn = new double[5];
 
             toReturn[0] = Math.Round(100.0 * wc[0] / (double)wl.size(), 2);
             toReturn[1] = Math.Round(100.0 * wc[1] / (double)wl.size(), 2);
             toReturn[2] = Math.Round(100.0 * wc[2] / (double)wl.size(), 2);
             toReturn[3] = Math.Round(100.0 * wc[3] / (double)wl.size(), 2);
+            toReturn[4] = Math.Round(100.0 * (wc[0]+wc[1]+wc[2]+wc[3]) / (double)wl.size(), 2);
+
 
             return toReturn;
         }
@@ -651,7 +655,7 @@ namespace SLS302_Project
             else
             {*/
                 chart1.Series.Add("test");
-                chart1.Series["test"].ChartType = SeriesChartType.Line;
+                chart1.Series["test"].ChartType = SeriesChartType.Point;
                 chart1.Series["test"].IsXValueIndexed = false;
 
                 chart1.Series["test"].XValueMember = chart1_xBox.Text;
