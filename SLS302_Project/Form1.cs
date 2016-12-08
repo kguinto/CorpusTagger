@@ -30,7 +30,7 @@ namespace SLS302_Project
         private double ttr = -1;
         private int[] wordCount = new int[4];
         private double[] ratios = new double[5];
-        private bool debugging = false;
+        private bool debugging = true;
         MaxentTagger tagger;
 
         DataSet set = new DataSet("AllFiles");
@@ -43,17 +43,35 @@ namespace SLS302_Project
         {
             InitializeComponent();
 
+            /*Load Tagger*/
+            // var jarRoot = @"C:\Users\Kirk\Documents\Visual Studio 2015\Projects\SLS302_Project\stanford-corenlp-3.6.0-models\edu\stanford\nlp";
+            //  var modelsDirectory = jarRoot +
+            //   var projectFolder = Directory.GetCurrentDirectory();
+            //   var modelsDirectory = projectFolder + @"\stanford-corenlp-3.6.0-models\edu\stanford\nlp\models";
+            //Current directory: C:\Users\Kirk\Documents\GitHub\CorpusTagger\SLS302_Project\bin\Release
+            //C:\Users\Kirk\Documents\GitHub\CorpusTagger\stanford-corenlp-3.6.0-models\edu\stanford\nlp\models
+            DialogResult result = loadModelDialog.ShowDialog(); // Show the dialog.
+            var taggerDirectory = loadModelDialog.FileName;
+
+            ///          if (debugging) { debugBox.Text = "Loading Tagger"; debugBox.Update(); }
+            if (debugging) { debugBox.Text = "Current directory: " + Directory.GetCurrentDirectory(); debugBox.Update(); }
+            ///          if (debugging) { debugBox.Text = "Loading Tagger"; debugBox.Update(); }
+            //          tagger = new MaxentTagger(modelsDirectory + @"\english-left3words-distsim.tagger");
+            if (debugging) { debugBox.Text = "Tagger directory: " + taggerDirectory; debugBox.Update(); }
+            tagger = new MaxentTagger(taggerDirectory);
+
 
             /* Initialize mainTable */
             mainTable.Columns.Add("Country", typeof(string));
             mainTable.Columns.Add("Code", typeof(string));
             mainTable.Columns.Add("Text", typeof(string));
             mainTable.Columns.Add("TTR", typeof(double));
+            mainTable.Columns.Add("ContentWordRatio", typeof(double));
             mainTable.Columns.Add("NounRatio", typeof(double));
             mainTable.Columns.Add("VerbRatio", typeof(double));
             mainTable.Columns.Add("AdjRatio", typeof(double));
             mainTable.Columns.Add("AdvRatio", typeof(double));
-            mainTable.Columns.Add("ContentWordRatio", typeof(double));
+            
 
             UniqueConstraint custUnique = new UniqueConstraint(new DataColumn[] { mainTable.Columns["Code"] });
             mainTable.Constraints.Add(custUnique);
@@ -81,22 +99,6 @@ namespace SLS302_Project
             else
                 debugBox.Visible = false;
 
-            /*Load Tagger*/
-            // var jarRoot = @"C:\Users\Kirk\Documents\Visual Studio 2015\Projects\SLS302_Project\stanford-corenlp-3.6.0-models\edu\stanford\nlp";
-            //  var modelsDirectory = jarRoot +
-            //   var projectFolder = Directory.GetCurrentDirectory();
-            //   var modelsDirectory = projectFolder + @"\stanford-corenlp-3.6.0-models\edu\stanford\nlp\models";
-            //Current directory: C:\Users\Kirk\Documents\GitHub\CorpusTagger\SLS302_Project\bin\Release
-            //C:\Users\Kirk\Documents\GitHub\CorpusTagger\stanford-corenlp-3.6.0-models\edu\stanford\nlp\models
-            DialogResult result = loadModelDialog.ShowDialog(); // Show the dialog.
-            var taggerDirectory = loadModelDialog.FileName;
-
-            ///          if (debugging) { debugBox.Text = "Loading Tagger"; debugBox.Update(); }
-            if (debugging) { debugBox.Text = "Current directory: " + Directory.GetCurrentDirectory(); debugBox.Update(); }
-            ///          if (debugging) { debugBox.Text = "Loading Tagger"; debugBox.Update(); }
-            //          tagger = new MaxentTagger(modelsDirectory + @"\english-left3words-distsim.tagger");
-            if (debugging) { debugBox.Text = "Tagger directory: " + taggerDirectory; debugBox.Update(); }
-            tagger = new MaxentTagger(taggerDirectory);
 
             dataGridView1.DataSource = mainTable;
             dataGridView1.Columns["Text"].Visible = false;
@@ -116,6 +118,7 @@ namespace SLS302_Project
                     categoryBox.Items.Add(cl.ColumnName.ToString());
                 }
             }
+
         }
   
         private void backgroundWorker1_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
@@ -363,6 +366,10 @@ namespace SLS302_Project
                 dtFinal.Merge(tmp);
             }
 
+      //      if (debugging) { debugBox.Text = "Adding new columns to dtFinal"; debugBox.Update(); }
+    //        dtFinal = addComparisonColumns(dtFinal);
+
+
             if (debugging) { debugBox.Text = "Adding columns to mainTable from dtFinal"; debugBox.Update(); }
             foreach (DataColumn cl in dtFinal.Columns)
             {
@@ -469,7 +476,8 @@ namespace SLS302_Project
             double types = wl.size();
             double tokens = (text.Split(new Char[] { ',', ' ', '.', '\n' })).Length;
 
-            return Math.Round(100 * types / tokens, 2);
+            return Math.Round(100.0 * types / (double) tokens, 2);
+           // return Math.Round(100.0 * types / tokens, 2);
         }
 
 
@@ -579,6 +587,26 @@ namespace SLS302_Project
             return toReturn;
         }
 
+ /*       public System.Data.DataTable addComparisonColumns(System.Data.DataTable dt)
+        {
+            dt.Columns.Add("Inschool-Outschool", typeof(double));
+  //          dt.Columns.Add("Comprehension-Production", typeof(double));
+   //         dt.Columns.Add("Written-Verbal", typeof(double));
+
+            foreach (DataRow row in dt.Rows)
+            {
+               // debugBox.Text = "" +;
+               row["Inschool-Outschool"] = (Convert.ToDouble(row["Inschool"].ToString()) - Convert.ToDouble(row["Outschool"].ToString()));
+                debugBox.Text = row["Inschool-Outschool"].ToString();
+                debugBox.Update();
+               // row["Inschool-Outschool"] = Convert.ToDouble(row["Inschool"].ToString()) - Convert.ToDouble(row["Outschool"].ToString());
+               //               row["Comprehension-Production"] = (Convert.ToDouble(row["Inschool"].ToString()) - Convert.ToDouble(row["OutSchool"].ToString());
+               //               row["Written-Verbal"] = Convert.ToDouble(row["Inschool"].ToString()) - Convert.ToDouble(row["OutSchool"].ToString());
+
+            }
+            return dt;
+        }*/
+
         private class VocabWord
         {
             private string word;
@@ -656,6 +684,8 @@ namespace SLS302_Project
             {*/
                 chart1.Series.Add("test");
                 chart1.Series["test"].ChartType = SeriesChartType.Point;
+                chart1.Series["test"].MarkerStyle = MarkerStyle.Circle;
+
                 chart1.Series["test"].IsXValueIndexed = false;
 
                 chart1.Series["test"].XValueMember = chart1_xBox.Text;
