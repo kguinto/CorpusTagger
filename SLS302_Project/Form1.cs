@@ -16,6 +16,7 @@ using System.IO;
 using System.Data;
 using Excel;
 using System.Windows.Forms.DataVisualization.Charting;
+using System.Linq;
 
 namespace SLS302_Project
 {
@@ -30,7 +31,7 @@ namespace SLS302_Project
         private double ttr = -1;
         private int[] wordCount = new int[4];
         private double[] ratios = new double[5];
-        private bool debugging = true;
+        private bool debugging = false;
         MaxentTagger tagger;
 
         DataSet set = new DataSet("AllFiles");
@@ -42,40 +43,7 @@ namespace SLS302_Project
         public Form1()
         {
             InitializeComponent();
-
-            /*Load Tagger*/
-            // var jarRoot = @"C:\Users\Kirk\Documents\Visual Studio 2015\Projects\SLS302_Project\stanford-corenlp-3.6.0-models\edu\stanford\nlp";
-            //  var modelsDirectory = jarRoot +
-            //   var projectFolder = Directory.GetCurrentDirectory();
-            //   var modelsDirectory = projectFolder + @"\stanford-corenlp-3.6.0-models\edu\stanford\nlp\models";
-            //Current directory: C:\Users\Kirk\Documents\GitHub\CorpusTagger\SLS302_Project\bin\Release
-            //C:\Users\Kirk\Documents\GitHub\CorpusTagger\stanford-corenlp-3.6.0-models\edu\stanford\nlp\models
-            DialogResult result = loadModelDialog.ShowDialog(); // Show the dialog.
-            var taggerDirectory = loadModelDialog.FileName;
-
-            ///          if (debugging) { debugBox.Text = "Loading Tagger"; debugBox.Update(); }
-            if (debugging) { debugBox.Text = "Current directory: " + Directory.GetCurrentDirectory(); debugBox.Update(); }
-            ///          if (debugging) { debugBox.Text = "Loading Tagger"; debugBox.Update(); }
-            //          tagger = new MaxentTagger(modelsDirectory + @"\english-left3words-distsim.tagger");
-            if (debugging) { debugBox.Text = "Tagger directory: " + taggerDirectory; debugBox.Update(); }
-            tagger = new MaxentTagger(taggerDirectory);
-
-
-            /* Initialize mainTable */
-            mainTable.Columns.Add("Country", typeof(string));
-            mainTable.Columns.Add("Code", typeof(string));
-            mainTable.Columns.Add("Text", typeof(string));
-            mainTable.Columns.Add("TTR", typeof(double));
-            mainTable.Columns.Add("ContentWordRatio", typeof(double));
-            mainTable.Columns.Add("NounRatio", typeof(double));
-            mainTable.Columns.Add("VerbRatio", typeof(double));
-            mainTable.Columns.Add("AdjRatio", typeof(double));
-            mainTable.Columns.Add("AdvRatio", typeof(double));
-            
-
-            UniqueConstraint custUnique = new UniqueConstraint(new DataColumn[] { mainTable.Columns["Code"] });
-            mainTable.Constraints.Add(custUnique);
-            
+           
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -94,33 +62,82 @@ namespace SLS302_Project
 
         private void Form1_Load(object sender, EventArgs e)
         {
+
+        }
+
+        private void Form1_Shown(object sender, EventArgs e)
+        {
             if (debugging)
                 debugBox.Visible = true;
             else
                 debugBox.Visible = false;
 
+            outputBox.Text = "Loading tagger...";
+            outputBox.Update();
+            /*Load Tagger*/
+            // var jarRoot = @"C:\Users\Kirk\Documents\Visual Studio 2015\Projects\SLS302_Project\stanford-corenlp-3.6.0-models\edu\stanford\nlp";
+            //  var modelsDirectory = jarRoot +
+            //   var projectFolder = Directory.GetCurrentDirectory();
+            //   var modelsDirectory = projectFolder + @"\stanford-corenlp-3.6.0-models\edu\stanford\nlp\models";
+            //Current directory: C:\Users\Kirk\Documents\GitHub\CorpusTagger\SLS302_Project\bin\Release
+            //C:\Users\Kirk\Documents\GitHub\CorpusTagger\stanford-corenlp-3.6.0-models\edu\stanford\nlp\models
+            DialogResult result = loadModelDialog.ShowDialog(); // Show the dialog.
 
-            dataGridView1.DataSource = mainTable;
-            dataGridView1.Columns["Text"].Visible = false;
+            if (result == DialogResult.OK)
+            { // Test result.
+                var taggerDirectory = loadModelDialog.FileName;
 
-            dataGridView2.DataSource = mainTable;
-            dataGridView2.Columns["Text"].Visible = false;
+                ///          if (debugging) { debugBox.Text = "Loading Tagger"; debugBox.Update(); }
+                if (debugging) { debugBox.Text = "Current directory: " + Directory.GetCurrentDirectory(); debugBox.Update(); }
+                ///          if (debugging) { debugBox.Text = "Loading Tagger"; debugBox.Update(); }
+                //          tagger = new MaxentTagger(modelsDirectory + @"\english-left3words-distsim.tagger");
+                if (debugging) { debugBox.Text = "Tagger directory: " + taggerDirectory; debugBox.Update(); }
+                tagger = new MaxentTagger(taggerDirectory);
 
-            foreach (DataColumn cl in mainTable.Columns)
-            {
-                if (!cl.DataType.Equals(typeof(string)))
+
+                /* Initialize mainTable */
+                mainTable.Columns.Add("Country", typeof(string));
+                mainTable.Columns.Add("Code", typeof(string));
+                mainTable.Columns.Add("Text", typeof(string));
+                mainTable.Columns.Add("TTR", typeof(double));
+                mainTable.Columns.Add("ContentWordRatio", typeof(double));
+                mainTable.Columns.Add("NounRatio", typeof(double));
+                mainTable.Columns.Add("VerbRatio", typeof(double));
+                mainTable.Columns.Add("AdjRatio", typeof(double));
+                mainTable.Columns.Add("AdvRatio", typeof(double));
+
+
+                UniqueConstraint custUnique = new UniqueConstraint(new DataColumn[] { mainTable.Columns["Code"] });
+                mainTable.Constraints.Add(custUnique);
+
+                dataGridView1.DataSource = mainTable;
+                dataGridView1.Columns["Text"].Visible = false;
+
+                dataGridView2.DataSource = mainTable;
+                dataGridView2.Columns["Text"].Visible = false;
+
+                foreach (DataColumn cl in mainTable.Columns)
                 {
-                    chart1_xBox.Items.Add(cl.ColumnName.ToString());
-                    chart1_yBox.Items.Add(cl.ColumnName.ToString());
+                    if (!cl.DataType.Equals(typeof(string)))
+                    {
+                        chart1_xBox.Items.Add(cl.ColumnName.ToString());
+                        chart1_yBox.Items.Add(cl.ColumnName.ToString());
+                    }
+                    else
+                    {
+                        categoryBox.Items.Add(cl.ColumnName.ToString());
+                    }
                 }
-                else
-                {
-                    categoryBox.Items.Add(cl.ColumnName.ToString());
-                }
+                outputBox.Text = "Done...";
+                outputBox.Update();
+
             }
-
+            else
+            {
+                System.Windows.Forms.Application.Exit();
+            }
         }
-  
+
         private void backgroundWorker1_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
         //      Console.Write("Doing it fam");
@@ -221,7 +238,7 @@ namespace SLS302_Project
             debugBox.Text = "showing dialog";
             debugBox.Update();
 
-            DialogResult result = openFileDialog1.ShowDialog(); // Show the dialog.
+            DialogResult result = textFilesDialog.ShowDialog(); // Show the dialog.
 
             DataRow row;
 
@@ -229,7 +246,7 @@ namespace SLS302_Project
             {
                 string text = "";
 
-                string[] files = openFileDialog1.FileNames;
+                string[] files = textFilesDialog.FileNames;
 
                 string[] filePath;
                 string[] fileName;
@@ -333,96 +350,110 @@ namespace SLS302_Project
 
         private void excelSheetButton_Click(object sender, EventArgs e)
         {
-            DialogResult result = openFileDialog1.ShowDialog();
+            DialogResult result = excelFileDialog.ShowDialog();
 
-            string[] files = openFileDialog1.FileNames;
+            outputBox.Text = "Loading data sheet...";
+            outputBox.Update();
 
-            if (debugging) { debugBox.Text = "Opening excel file"; debugBox.Update(); }
-
-            FileStream stream = System.IO.File.Open(openFileDialog1.FileNames[0], FileMode.Open, FileAccess.Read);
-            //Choose one of either 1 or 2
-            //1. Reading from a binary Excel file ('97-2003 format; *.xls)
-            //IExcelDataReader excelReader = ExcelReaderFactory.CreateBinaryReader(stream);
-
-            if (debugging) { debugBox.Text = "opening excelReader"; debugBox.Update(); }
-            //2. Reading from a OpenXml Excel file (2007 format; *.xlsx)
-            IExcelDataReader excelReader = ExcelReaderFactory.CreateOpenXmlReader(stream);
-
-            if (debugging) { debugBox.Text = "Creating column names"; debugBox.Update(); }
-            //4. DataSet - Create column names from first row
-            excelReader.IsFirstRowAsColumnNames = true;
-            DataSet ds = excelReader.AsDataSet();
-
-            if (debugging) { debugBox.Text = "Closing excelReader"; debugBox.Update(); }
-            //6. Free resources (IExcelDataReader is IDisposable)
-            excelReader.Close();
-
-            if (debugging) { debugBox.Text = "Creating dtFinal"; debugBox.Update(); }
-            System.Data.DataTable dtFinal = new System.Data.DataTable();
-
-            if (debugging) { debugBox.Text = "Merging dtFinal"; debugBox.Update(); }
-            foreach (System.Data.DataTable tmp in ds.Tables)
+            if (result == DialogResult.OK)
             {
-                dtFinal.Merge(tmp);
-            }
+                string[] files = excelFileDialog.FileNames;
 
-      //      if (debugging) { debugBox.Text = "Adding new columns to dtFinal"; debugBox.Update(); }
-    //        dtFinal = addComparisonColumns(dtFinal);
+                if (debugging) { debugBox.Text = "Opening excel file"; debugBox.Update(); }
 
-
-            if (debugging) { debugBox.Text = "Adding columns to mainTable from dtFinal"; debugBox.Update(); }
-            foreach (DataColumn cl in dtFinal.Columns)
-            {
-                if(!mainTable.Columns.Contains(cl.ColumnName))
+                try
                 {
-                    mainTable.Columns.Add(cl.ColumnName, cl.DataType);
-                    if (!cl.DataType.Equals(typeof(string)))
+                    FileStream stream = System.IO.File.Open(excelFileDialog.FileNames[0], FileMode.Open, FileAccess.Read);
+                    //Choose one of either 1 or 2
+                    //1. Reading from a binary Excel file ('97-2003 format; *.xls)
+                    //IExcelDataReader excelReader = ExcelReaderFactory.CreateBinaryReader(stream);
+
+                    if (debugging) { debugBox.Text = "opening excelReader"; debugBox.Update(); }
+                    //2. Reading from a OpenXml Excel file (2007 format; *.xlsx)
+                    IExcelDataReader excelReader = ExcelReaderFactory.CreateOpenXmlReader(stream);
+
+                    if (debugging) { debugBox.Text = "Creating column names"; debugBox.Update(); }
+                    //4. DataSet - Create column names from first row
+                    excelReader.IsFirstRowAsColumnNames = true;
+                    DataSet ds = excelReader.AsDataSet();
+
+                    if (debugging) { debugBox.Text = "Closing excelReader"; debugBox.Update(); }
+                    //6. Free resources (IExcelDataReader is IDisposable)
+                    excelReader.Close();
+
+                    if (debugging) { debugBox.Text = "Creating dtFinal"; debugBox.Update(); }
+                    System.Data.DataTable dtFinal = new System.Data.DataTable();
+
+                    if (debugging) { debugBox.Text = "Merging dtFinal"; debugBox.Update(); }
+                    foreach (System.Data.DataTable tmp in ds.Tables)
                     {
-                        chart1_xBox.Items.Add(cl.ColumnName.ToString());
-                        chart1_yBox.Items.Add(cl.ColumnName.ToString());
+                        dtFinal.Merge(tmp);
                     }
-                }
-            }
 
-            DataRow[] foundRows;
+                    //      if (debugging) { debugBox.Text = "Adding new columns to dtFinal"; debugBox.Update(); }
+                    //        dtFinal = addComparisonColumns(dtFinal);
 
-            int i = 0;
-            foreach(DataRow row in mainTable.Rows)
-            {
-                i++;
-                outputBox.Text = "Importing data for row " + i + " of " + mainTable.Rows.Count;
-                outputBox.Update();
 
-                if (debugging) { debugBox.Text = "Selecting row in dtFinal containing " + row["Code"]; debugBox.Update(); }
-                foundRows = dtFinal.Select("Code = \'" + row["Code"] + "'"); //Get matching rows from tables
-
-                if(foundRows.Length > 0)
-                {
-                //   debugBox.Text +=  string.Join(", ", foundRows[0].ItemArray) + "\n\n";
-                   foreach (DataColumn cl in foundRows[0].Table.Columns)
+                    if (debugging) { debugBox.Text = "Adding columns to mainTable from dtFinal"; debugBox.Update(); }
+                    foreach (DataColumn cl in dtFinal.Columns)
                     {
-                        if (debugging) { debugBox.Text = "Adding column " +cl.ColumnName + " to row " + row["Code"]; debugBox.Update(); }
-                        if (row.Table.Columns.Contains(cl.ColumnName))
+                        if (!mainTable.Columns.Contains(cl.ColumnName))
                         {
-                            row[cl.ColumnName] = foundRows[0][cl.ColumnName];
+                            mainTable.Columns.Add(cl.ColumnName, cl.DataType);
+                            if (!cl.DataType.Equals(typeof(string)))
+                            {
+                                chart1_xBox.Items.Add(cl.ColumnName.ToString());
+                                chart1_yBox.Items.Add(cl.ColumnName.ToString());
+                            }
                         }
                     }
 
+                    DataRow[] foundRows;
+
+                    int i = 0;
+                    foreach (DataRow row in mainTable.Rows)
+                    {
+                        i++;
+                        outputBox.Text = "Importing data for row " + i + " of " + mainTable.Rows.Count;
+                        outputBox.Update();
+
+                        if (debugging) { debugBox.Text = "Selecting row in dtFinal containing " + row["Code"]; debugBox.Update(); }
+                        foundRows = dtFinal.Select("Code = \'" + row["Code"] + "'"); //Get matching rows from tables
+
+                        if (foundRows.Length > 0)
+                        {
+                            //   debugBox.Text +=  string.Join(", ", foundRows[0].ItemArray) + "\n\n";
+                            foreach (DataColumn cl in foundRows[0].Table.Columns)
+                            {
+                                if (debugging) { debugBox.Text = "Adding column " + cl.ColumnName + " to row " + row["Code"]; debugBox.Update(); }
+                                if (row.Table.Columns.Contains(cl.ColumnName))
+                                {
+                                    row[cl.ColumnName] = foundRows[0][cl.ColumnName];
+                                }
+                            }
+
+                        }
+
+                        debugBox.Update();
+                    }
+
+                    outputBox.Text = "Done.";
+                    outputBox.Update();
                 }
-                    
-                debugBox.Update();
+                catch (Exception ex)
+                {
+                    outputBox.Text = "!!! Could not load data sheet. It may be open in another program.";
+                    outputBox.Update();
+                }
+              
+
+
+
+
+                //     dataGridView2.DataSource = dtFinal; // dataset */
+
+
             }
-
-            outputBox.Text = "Done.";
-            outputBox.Update();
-
-
-
-
-            //     dataGridView2.DataSource = dtFinal; // dataset */
-
-
-
         }
 
         public string runPOS(string text, System.Windows.Forms.TextBox debugBox)
@@ -587,25 +618,24 @@ namespace SLS302_Project
             return toReturn;
         }
 
- /*       public System.Data.DataTable addComparisonColumns(System.Data.DataTable dt)
+        /* Credit: http://stackoverflow.com/questions/17447817/correlation-of-two-arrays-in-c-sharp */
+        public double ComputeCoeff(double[] values1, double[] values2)
         {
-            dt.Columns.Add("Inschool-Outschool", typeof(double));
-  //          dt.Columns.Add("Comprehension-Production", typeof(double));
-   //         dt.Columns.Add("Written-Verbal", typeof(double));
+            if (values1.Length != values2.Length)
+                throw new ArgumentException("values must be the same length");
 
-            foreach (DataRow row in dt.Rows)
-            {
-               // debugBox.Text = "" +;
-               row["Inschool-Outschool"] = (Convert.ToDouble(row["Inschool"].ToString()) - Convert.ToDouble(row["Outschool"].ToString()));
-                debugBox.Text = row["Inschool-Outschool"].ToString();
-                debugBox.Update();
-               // row["Inschool-Outschool"] = Convert.ToDouble(row["Inschool"].ToString()) - Convert.ToDouble(row["Outschool"].ToString());
-               //               row["Comprehension-Production"] = (Convert.ToDouble(row["Inschool"].ToString()) - Convert.ToDouble(row["OutSchool"].ToString());
-               //               row["Written-Verbal"] = Convert.ToDouble(row["Inschool"].ToString()) - Convert.ToDouble(row["OutSchool"].ToString());
+            var avg1 = values1.Average();
+            var avg2 = values2.Average();
 
-            }
-            return dt;
-        }*/
+            var sum1 = values1.Zip(values2, (x1, y1) => (x1 - avg1) * (y1 - avg2)).Sum();
+
+            var sumSqr1 = values1.Sum(x => Math.Pow((x - avg1), 2.0));
+            var sumSqr2 = values2.Sum(y => Math.Pow((y - avg2), 2.0));
+
+            var result = sum1 / Math.Sqrt(sumSqr1 * sumSqr2);
+
+            return result;
+        }
 
         private class VocabWord
         {
@@ -626,7 +656,7 @@ namespace SLS302_Project
 
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void drawGraphButton_Click(object sender, EventArgs e)
         {
             outputBox.Text = "Drawing graph...";
             outputBox.Update();
@@ -636,6 +666,16 @@ namespace SLS302_Project
             string xAxis = chart1_xBox.Text;
             string yAxis = chart1_yBox.Text;
 
+            try
+            {
+                double[] xArray = mainTable.AsEnumerable().Select(r => r.Field<double>(xAxis)).ToArray();
+                double[] yArray = mainTable.AsEnumerable().Select(r => r.Field<double>(yAxis)).ToArray(); ;
+                double coeff = ComputeCoeff(xArray, yArray);
+                coeffBox.Text = "coeff: " + coeff; coeffBox.Update();
+            } catch (Exception exc)
+            {
+                debugBox.Text = "Couldn't get coeff because " + exc.ToString();
+            }
 
          /*   if (!categoryBox.Text.Equals(""))
             {
@@ -682,16 +722,17 @@ namespace SLS302_Project
             }
             else
             {*/
-                chart1.Series.Add("test");
-                chart1.Series["test"].ChartType = SeriesChartType.Point;
-                chart1.Series["test"].MarkerStyle = MarkerStyle.Circle;
 
-                chart1.Series["test"].IsXValueIndexed = false;
+            chart1.Series.Add("test");
+            chart1.Series["test"].ChartType = SeriesChartType.Point;
+            chart1.Series["test"].MarkerStyle = MarkerStyle.Circle;
 
-                chart1.Series["test"].XValueMember = chart1_xBox.Text;
-                chart1.Series["test"].YValueMembers = chart1_yBox.Text;
+            chart1.Series["test"].IsXValueIndexed = false;
 
-                chart1.DataSource = mainTable;
+            chart1.Series["test"].XValueMember = chart1_xBox.Text;
+            chart1.Series["test"].YValueMembers = chart1_yBox.Text;
+
+            chart1.DataSource = mainTable;
             
 
             chart1.DataBind();
@@ -701,5 +742,6 @@ namespace SLS302_Project
             outputBox.Text = "Done.";
             outputBox.Update();
         }
+
     }
 }

@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.button1 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -55,7 +55,7 @@
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.categoryBox = new System.Windows.Forms.ComboBox();
             this.chart1_xBox = new System.Windows.Forms.ComboBox();
-            this.button2 = new System.Windows.Forms.Button();
+            this.drawGraphButton = new System.Windows.Forms.Button();
             this.chart1_yBox = new System.Windows.Forms.ComboBox();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.excelSheetButton = new System.Windows.Forms.Button();
@@ -71,8 +71,10 @@
             this.dataColumn6 = new System.Data.DataColumn();
             this.dataColumn7 = new System.Data.DataColumn();
             this.SingleTaggingContainer = new System.Windows.Forms.SplitContainer();
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.excelFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.loadModelDialog = new System.Windows.Forms.OpenFileDialog();
+            this.textFilesDialog = new System.Windows.Forms.OpenFileDialog();
+            this.coeffBox = new System.Windows.Forms.TextBox();
             this.contextMenuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -311,9 +313,10 @@
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.Controls.Add(this.coeffBox);
             this.splitContainer1.Panel2.Controls.Add(this.categoryBox);
             this.splitContainer1.Panel2.Controls.Add(this.chart1_xBox);
-            this.splitContainer1.Panel2.Controls.Add(this.button2);
+            this.splitContainer1.Panel2.Controls.Add(this.drawGraphButton);
             this.splitContainer1.Panel2.Controls.Add(this.chart1_yBox);
             this.splitContainer1.Panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer1_Panel2_Paint);
             this.splitContainer1.Size = new System.Drawing.Size(1322, 344);
@@ -322,17 +325,17 @@
             // 
             // chart1
             // 
-            chartArea2.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea2);
+            chartArea1.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea1);
             this.chart1.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend2.Name = "Legend1";
-            this.chart1.Legends.Add(legend2);
+            legend1.Name = "Legend1";
+            this.chart1.Legends.Add(legend1);
             this.chart1.Location = new System.Drawing.Point(0, 0);
             this.chart1.Name = "chart1";
-            series2.ChartArea = "ChartArea1";
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            this.chart1.Series.Add(series2);
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chart1.Series.Add(series1);
             this.chart1.Size = new System.Drawing.Size(1149, 344);
             this.chart1.TabIndex = 6;
             this.chart1.Text = "chart1";
@@ -358,18 +361,18 @@
             this.chart1_xBox.TabIndex = 7;
             this.chart1_xBox.Text = "TTR";
             // 
-            // button2
+            // drawGraphButton
             // 
-            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.drawGraphButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.button2.Location = new System.Drawing.Point(3, 154);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(163, 47);
-            this.button2.TabIndex = 9;
-            this.button2.Text = "Draw Graph";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.drawGraphButton.Location = new System.Drawing.Point(3, 154);
+            this.drawGraphButton.Name = "drawGraphButton";
+            this.drawGraphButton.Size = new System.Drawing.Size(163, 47);
+            this.drawGraphButton.TabIndex = 9;
+            this.drawGraphButton.Text = "Draw Graph";
+            this.drawGraphButton.UseVisualStyleBackColor = true;
+            this.drawGraphButton.Click += new System.EventHandler(this.drawGraphButton_Click);
             // 
             // chart1_yBox
             // 
@@ -491,14 +494,34 @@
             this.SingleTaggingContainer.TabIndex = 11;
             this.SingleTaggingContainer.Visible = false;
             // 
-            // openFileDialog1
+            // excelFileDialog
             // 
-            this.openFileDialog1.FileName = "ICNALE_SW_V1.0_Infosheet.xlsx";
-            this.openFileDialog1.Multiselect = true;
+            this.excelFileDialog.DefaultExt = "xlsx";
+            this.excelFileDialog.FileName = "ICNALE_SW_V1.0_Infosheet.xlsx";
+            this.excelFileDialog.Filter = "Excel Files (*.xlsx)|*.xlsx|All files (*.*)|*.*\"";
             // 
             // loadModelDialog
             // 
-            this.loadModelDialog.FileName = "openFileDialog2";
+            this.loadModelDialog.DefaultExt = "tagger";
+            this.loadModelDialog.FileName = "english-left3words-distsim.tagger";
+            this.loadModelDialog.Filter = "Tagger Files (*.tagger)|*.tagger|All files (*.*)|*.*\"";
+            // 
+            // textFilesDialog
+            // 
+            this.textFilesDialog.DefaultExt = "txt";
+            this.textFilesDialog.Filter = "Text Files (*.txt)|*.txt|All files (*.*)|*.*\"";
+            this.textFilesDialog.Multiselect = true;
+            // 
+            // coeffBox
+            // 
+            this.coeffBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.coeffBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.coeffBox.Location = new System.Drawing.Point(2, 304);
+            this.coeffBox.Name = "coeffBox";
+            this.coeffBox.ReadOnly = true;
+            this.coeffBox.Size = new System.Drawing.Size(164, 13);
+            this.coeffBox.TabIndex = 11;
             // 
             // Form1
             // 
@@ -512,6 +535,7 @@
             this.Name = "Form1";
             this.Text = "CorpusTagger";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.Shown += new System.EventHandler(this.Form1_Shown);
             this.contextMenuStrip1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -525,6 +549,7 @@
             this.tabPage2.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
+            this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
@@ -556,7 +581,7 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.SplitContainer SingleTaggingContainer;
         private System.Windows.Forms.Button openFileButton;
-        private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.OpenFileDialog excelFileDialog;
         private System.Windows.Forms.TextBox outputBox;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Data.DataSet dataSet1;
@@ -576,12 +601,14 @@
         private System.Windows.Forms.RichTextBox essayBox;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
         private System.Windows.Forms.DataGridView dataGridView2;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button drawGraphButton;
         private System.Windows.Forms.ComboBox chart1_yBox;
         private System.Windows.Forms.ComboBox chart1_xBox;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.SplitContainer splitContainer2;
         private System.Windows.Forms.ComboBox categoryBox;
         private System.Windows.Forms.OpenFileDialog loadModelDialog;
+        private System.Windows.Forms.OpenFileDialog textFilesDialog;
+        private System.Windows.Forms.TextBox coeffBox;
     }
 }
