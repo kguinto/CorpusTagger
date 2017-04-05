@@ -1,0 +1,104 @@
+C:\Users\Kirk\Documents\Visual Studio 2015\Projects\SLS302_Project\SLS302_Project\obj\Debug\SLS302_Project.Form1.resources
+C:\Users\Kirk\Documents\Visual Studio 2015\Projects\SLS302_Project\SLS302_Project\obj\Debug\SLS302_Project.Properties.Resources.resources
+C:\Users\Kirk\Documents\Visual Studio 2015\Projects\SLS302_Project\SLS302_Project\obj\Debug\SLS302_Project.csproj.GenerateResource.Cache
+C:\Users\Kirk\Documents\Visual Studio 2015\Projects\SLS302_Project\SLS302_Project\bin\Debug\IKVM.AWT.WinForms.dll
+C:\Users\Kirk\Documents\Visual Studio 2015\Projects\SLS302_Project\SLS302_Project\bin\Debug\IKVM.OpenJDK.Beans.dll
+C:\Users\Kirk\Documents\Visual Studio 2015\Projects\SLS302_Project\SLS302_Project\bin\Debug\IKVM.OpenJDK.Charsets.dll
+C:\Users\Kirk\Documents\Visual Studio 2015\Projects\SLS302_Project\SLS302_Project\bin\Debug\IKVM.OpenJDK.Cldrdata.dll
+C:\Users\Kirk\Documents\Visual Studio 2015\Projects\SLS302_Project\SLS302_Project\bin\Debug\IKVM.OpenJDK.Corba.dll
+C:\Users\Kirk\Documents\Visual Studio 2015\Projects\SLS302_Project\SLS302_Project\bin\Debug\IKVM.OpenJDK.Core.dll
+C:\Users\Kirk\Documents\Visual Studio 2015\Projects\SLS302_Project\SLS302_Project\bin\Debug\IKVM.OpenJDK.Jdbc.dll
+C:\Users\Kirk\Documents\Visual Studio 2015\Projects\SLS302_Project\SLS302_Project\bin\Debug\IKVM.OpenJDK.Localedata.dll
+C:\Users\Kirk\Documents\Visual Studio 2015\Projects\SLS302_Project\SLS302_Project\bin\Debug\IKVM.OpenJDK.Management.dll
+C:\Users\Kirk\Documents\Visual Studio 2015\Projects\SLS302_Project\SLS302_Project\bin\Debug\IKVM.OpenJDK.Media.dll
+C:\Users\Kirk\Documents\Visual Studio 2015\Projects\SLS302_Project\SLS302_Project\bin\Debug\IKVM.OpenJDK.Misc.dll
+C:\Users\Kirk\Documents\Visual Studio 2015\Projects\SLS302_Project\SLS302_Project\bin\Debug\IKVM.OpenJDK.Naming.dll
+C:\Users\Kirk\Documents\Visual Studio 2015\Projects\SLS302_Project\SLS302_Project\bin\Debug\IKVM.OpenJDK.Nashorn.dll
+C:\Users\Kirk\Documents\Visual Studio 2015\Projects\SLS302_Project\SLS302_Project\bin\Debug\IKVM.OpenJDK.Remoting.dll
+C:\Users\Kirk\Documents\Visual Studio 2015\Projects\SLS302_Project\SLS302_Project\bin\Debug\IKVM.OpenJDK.Security.dll
+C:\Users\Kirk\Documents\Visual Studio 2015\Projects\SLS302_Project\SLS302_Project\bin\Debug\IKVM.OpenJDK.SwingAWT.dll
+C:\Users\Kirk\Documents\Visual Studio 2015\Projects\SLS302_Project\SLS302_Project\bin\Debug\IKVM.OpenJDK.Text.dll
+C:\Users\Kirk\Documents\Visual Studio 2015\Projects\SLS302_Project\SLS302_Project\bin\Debug\IKVM.OpenJDK.Tools.dll
+C:\Users\Kirk\Documents\Visual Studio 2015\Projects\SLS302_Project\SLS302_Project\bin\Debug\IKVM.OpenJDK.Util.dll
+C:\Users\Kirk\Documents\Visual Studio 2015\Projects\SLS302_Project\SLS302_Project\bin\Debug\IKVM.OpenJDK.XML.API.dll
+C:\Users\Kirk\Documents\Visual Studio 2015\Projects\SLS302_Project\SLS302_Project\bin\Debug\IKVM.OpenJDK.XML.Bind.dll
+C:\Users\Kirk\Documents\Visual Studio 2015\Projects\SLS302_Project\SLS302_Project\bin\Debug\IKVM.OpenJDK.XML.Crypto.dll
+C:\Users\Kirk\Documents\Visual Studio 2015\Projects\SLS302_Project\SLS302_Project\bin\Debug\IKVM.OpenJDK.XML.Parse.dll
+C:\Users\Kirk\Documents\Visual Studio 2015\Projects\SLS302_Project\SLS302_Project\bin\Debug\IKVM.OpenJDK.XML.Transform.dll
+C:\Users\Kirk\Documents\Visual Studio 2015\Projects\SLS302_Project\SLS302_Project\bin\Debug\IKVM.OpenJDK.XML.WebServices.dll
+C:\Users\Kirk\Documents\Visual Studio 2015\Projects\SLS302_Project\SLS302_Project\bin\Debug\IKVM.OpenJDK.XML.XPath.dll
+C:\Users\Kirk\Documents\Visual Studio 2015\Projects\SLS302_Project\SLS302_Project\bin\Debug\IKVM.Runtime.dll
+C:\Users\Kirk\Documents\Visual Studio 2015\Projects\SLS302_Project\SLS302_Project\bin\Debug\IKVM.Runtime.JNI.dll
+C:\Users\Kirk\Documents\Visual Studio 2015\Projects\SLS302_Project\SLS302_Project\obj\Debug\SLS302_Project.csprojResolveAssemblyReference.cache
+C:\Users\Kirk\Documents\Visual Studio 2015\Projects\SLS302_Project\SLS302_Project\bin\Debug\POS Tagger.exe.config
+C:\Users\Kirk\Documents\Visual Studio 2015\Projects\SLS302_Project\SLS302_Project\bin\Debug\POS Tagger.exe.manifest
+C:\Users\Kirk\Documents\Visual Studio 2015\Projects\SLS302_Project\SLS302_Project\bin\Debug\POS Tagger.application
+C:\Users\Kirk\Documents\Visual Studio 2015\Projects\SLS302_Project\SLS302_Project\bin\Debug\POS Tagger.exe
+C:\Users\Kirk\Documents\Visual Studio 2015\Projects\SLS302_Project\SLS302_Project\bin\Debug\POS Tagger.pdb
+C:\Users\Kirk\Documents\Visual Studio 2015\Projects\SLS302_Project\SLS302_Project\obj\Debug\POS Tagger.exe.manifest
+C:\Users\Kirk\Documents\Visual Studio 2015\Projects\SLS302_Project\SLS302_Project\obj\Debug\POS Tagger.application
+C:\Users\Kirk\Documents\Visual Studio 2015\Projects\SLS302_Project\SLS302_Project\obj\Debug\POS Tagger.exe
+C:\Users\Kirk\Documents\Visual Studio 2015\Projects\SLS302_Project\SLS302_Project\obj\Debug\POS Tagger.pdb
+C:\Users\Kirk\Documents\Visual Studio 2015\Projects\SLS302_Project\SLS302_Project\bin\Debug\ejml-0.23.dll
+C:\Users\Kirk\Documents\Visual Studio 2015\Projects\SLS302_Project\SLS302_Project\bin\Debug\javax.json.dll
+C:\Users\Kirk\Documents\Visual Studio 2015\Projects\SLS302_Project\SLS302_Project\bin\Debug\joda-time.dll
+C:\Users\Kirk\Documents\Visual Studio 2015\Projects\SLS302_Project\SLS302_Project\bin\Debug\jollyday.dll
+C:\Users\Kirk\Documents\Visual Studio 2015\Projects\SLS302_Project\SLS302_Project\bin\Debug\xom.dll
+C:\Users\Kirk\Documents\Visual Studio 2015\Projects\SLS302_Project\SLS302_Project\bin\Debug\slf4j-api.dll
+C:\Users\Kirk\Documents\Visual Studio 2015\Projects\SLS302_Project\SLS302_Project\bin\Debug\stanford-corenlp-3.6.0.dll
+C:\Users\Kirk\Documents\Visual Studio 2015\Projects\SLS302_Project\SLS302_Project\obj\Debug\SLS302_Project.csproj.ResolveComReference.cache
+C:\Users\Kirk\Documents\Visual Studio 2015\Projects\SLS302_Project\SLS302_Project\bin\Debug\Excel.dll
+C:\Users\Kirk\Documents\Visual Studio 2015\Projects\SLS302_Project\SLS302_Project\bin\Debug\ICSharpCode.SharpZipLib.dll
+C:\Users\Kirk\Documents\Visual Studio 2015\Projects\SLS302_Project\SLS302_Project\bin\Debug\Excel.pdb
+C:\Users\Kirk\Documents\GitHub\CorpusTagger\SLS302_Project\bin\Debug\POS Tagger.exe.config
+C:\Users\Kirk\Documents\GitHub\CorpusTagger\SLS302_Project\obj\Debug\SLS302_Project.csproj.ResolveComReference.cache
+C:\Users\Kirk\Documents\GitHub\CorpusTagger\SLS302_Project\obj\Debug\POS Tagger.exe
+C:\Users\Kirk\Documents\GitHub\CorpusTagger\SLS302_Project\obj\Debug\POS Tagger.pdb
+C:\Users\Kirk\Documents\GitHub\CorpusTagger\SLS302_Project\obj\Debug\SLS302_Project.csprojResolveAssemblyReference.cache
+C:\Users\Kirk\Documents\GitHub\CorpusTagger\SLS302_Project\obj\Debug\SLS302_Project.Form1.resources
+C:\Users\Kirk\Documents\GitHub\CorpusTagger\SLS302_Project\obj\Debug\SLS302_Project.Properties.Resources.resources
+C:\Users\Kirk\Documents\GitHub\CorpusTagger\SLS302_Project\obj\Debug\SLS302_Project.csproj.GenerateResource.Cache
+C:\Users\Kirk\Documents\GitHub\CorpusTagger\SLS302_Project\bin\Debug\POS Tagger.exe.manifest
+C:\Users\Kirk\Documents\GitHub\CorpusTagger\SLS302_Project\bin\Debug\POS Tagger.application
+C:\Users\Kirk\Documents\GitHub\CorpusTagger\SLS302_Project\bin\Debug\POS Tagger.exe
+C:\Users\Kirk\Documents\GitHub\CorpusTagger\SLS302_Project\bin\Debug\POS Tagger.pdb
+C:\Users\Kirk\Documents\GitHub\CorpusTagger\SLS302_Project\bin\Debug\ejml-0.23.dll
+C:\Users\Kirk\Documents\GitHub\CorpusTagger\SLS302_Project\bin\Debug\Excel.dll
+C:\Users\Kirk\Documents\GitHub\CorpusTagger\SLS302_Project\bin\Debug\ICSharpCode.SharpZipLib.dll
+C:\Users\Kirk\Documents\GitHub\CorpusTagger\SLS302_Project\bin\Debug\IKVM.AWT.WinForms.dll
+C:\Users\Kirk\Documents\GitHub\CorpusTagger\SLS302_Project\bin\Debug\IKVM.OpenJDK.Beans.dll
+C:\Users\Kirk\Documents\GitHub\CorpusTagger\SLS302_Project\bin\Debug\IKVM.OpenJDK.Charsets.dll
+C:\Users\Kirk\Documents\GitHub\CorpusTagger\SLS302_Project\bin\Debug\IKVM.OpenJDK.Cldrdata.dll
+C:\Users\Kirk\Documents\GitHub\CorpusTagger\SLS302_Project\bin\Debug\IKVM.OpenJDK.Corba.dll
+C:\Users\Kirk\Documents\GitHub\CorpusTagger\SLS302_Project\bin\Debug\IKVM.OpenJDK.Core.dll
+C:\Users\Kirk\Documents\GitHub\CorpusTagger\SLS302_Project\bin\Debug\IKVM.OpenJDK.Jdbc.dll
+C:\Users\Kirk\Documents\GitHub\CorpusTagger\SLS302_Project\bin\Debug\IKVM.OpenJDK.Localedata.dll
+C:\Users\Kirk\Documents\GitHub\CorpusTagger\SLS302_Project\bin\Debug\IKVM.OpenJDK.Management.dll
+C:\Users\Kirk\Documents\GitHub\CorpusTagger\SLS302_Project\bin\Debug\IKVM.OpenJDK.Media.dll
+C:\Users\Kirk\Documents\GitHub\CorpusTagger\SLS302_Project\bin\Debug\IKVM.OpenJDK.Misc.dll
+C:\Users\Kirk\Documents\GitHub\CorpusTagger\SLS302_Project\bin\Debug\IKVM.OpenJDK.Naming.dll
+C:\Users\Kirk\Documents\GitHub\CorpusTagger\SLS302_Project\bin\Debug\IKVM.OpenJDK.Nashorn.dll
+C:\Users\Kirk\Documents\GitHub\CorpusTagger\SLS302_Project\bin\Debug\IKVM.OpenJDK.Remoting.dll
+C:\Users\Kirk\Documents\GitHub\CorpusTagger\SLS302_Project\bin\Debug\IKVM.OpenJDK.Security.dll
+C:\Users\Kirk\Documents\GitHub\CorpusTagger\SLS302_Project\bin\Debug\IKVM.OpenJDK.SwingAWT.dll
+C:\Users\Kirk\Documents\GitHub\CorpusTagger\SLS302_Project\bin\Debug\IKVM.OpenJDK.Text.dll
+C:\Users\Kirk\Documents\GitHub\CorpusTagger\SLS302_Project\bin\Debug\IKVM.OpenJDK.Tools.dll
+C:\Users\Kirk\Documents\GitHub\CorpusTagger\SLS302_Project\bin\Debug\IKVM.OpenJDK.Util.dll
+C:\Users\Kirk\Documents\GitHub\CorpusTagger\SLS302_Project\bin\Debug\IKVM.OpenJDK.XML.API.dll
+C:\Users\Kirk\Documents\GitHub\CorpusTagger\SLS302_Project\bin\Debug\IKVM.OpenJDK.XML.Bind.dll
+C:\Users\Kirk\Documents\GitHub\CorpusTagger\SLS302_Project\bin\Debug\IKVM.OpenJDK.XML.Crypto.dll
+C:\Users\Kirk\Documents\GitHub\CorpusTagger\SLS302_Project\bin\Debug\IKVM.OpenJDK.XML.Parse.dll
+C:\Users\Kirk\Documents\GitHub\CorpusTagger\SLS302_Project\bin\Debug\IKVM.OpenJDK.XML.Transform.dll
+C:\Users\Kirk\Documents\GitHub\CorpusTagger\SLS302_Project\bin\Debug\IKVM.OpenJDK.XML.WebServices.dll
+C:\Users\Kirk\Documents\GitHub\CorpusTagger\SLS302_Project\bin\Debug\IKVM.OpenJDK.XML.XPath.dll
+C:\Users\Kirk\Documents\GitHub\CorpusTagger\SLS302_Project\bin\Debug\IKVM.Runtime.dll
+C:\Users\Kirk\Documents\GitHub\CorpusTagger\SLS302_Project\bin\Debug\IKVM.Runtime.JNI.dll
+C:\Users\Kirk\Documents\GitHub\CorpusTagger\SLS302_Project\bin\Debug\javax.json.dll
+C:\Users\Kirk\Documents\GitHub\CorpusTagger\SLS302_Project\bin\Debug\joda-time.dll
+C:\Users\Kirk\Documents\GitHub\CorpusTagger\SLS302_Project\bin\Debug\jollyday.dll
+C:\Users\Kirk\Documents\GitHub\CorpusTagger\SLS302_Project\bin\Debug\slf4j-api.dll
+C:\Users\Kirk\Documents\GitHub\CorpusTagger\SLS302_Project\bin\Debug\stanford-corenlp-3.6.0.dll
+C:\Users\Kirk\Documents\GitHub\CorpusTagger\SLS302_Project\bin\Debug\xom.dll
+C:\Users\Kirk\Documents\GitHub\CorpusTagger\SLS302_Project\bin\Debug\Excel.pdb
+C:\Users\Kirk\Documents\GitHub\CorpusTagger\SLS302_Project\obj\Debug\POS Tagger.exe.manifest
+C:\Users\Kirk\Documents\GitHub\CorpusTagger\SLS302_Project\obj\Debug\POS Tagger.application
