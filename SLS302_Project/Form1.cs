@@ -1,7 +1,5 @@
 ﻿// template for debugging: if (debugging) { debugBox.Text = ""; debugBox.Update(); }
 
-
-
 using System;
 using System.Windows.Forms;
 using edu.stanford.nlp.ling;
@@ -74,68 +72,47 @@ namespace SLS302_Project
 
             outputBox.Text = "Loading tagger...";
             outputBox.Update();
-            /*Load Tagger*/
-            // var jarRoot = @"C:\Users\Kirk\Documents\Visual Studio 2015\Projects\SLS302_Project\stanford-corenlp-3.6.0-models\edu\stanford\nlp";
-            //  var modelsDirectory = jarRoot +
-            //   var projectFolder = Directory.GetCurrentDirectory();
-            //   var modelsDirectory = projectFolder + @"\stanford-corenlp-3.6.0-models\edu\stanford\nlp\models";
-            //Current directory: C:\Users\Kirk\Documents\GitHub\CorpusTagger\SLS302_Project\bin\Release
-            //C:\Users\Kirk\Documents\GitHub\CorpusTagger\stanford-corenlp-3.6.0-models\edu\stanford\nlp\models
-            DialogResult result = loadModelDialog.ShowDialog(); // Show the dialog.
 
-            if (result == DialogResult.OK)
-            { // Test result.
-                var taggerDirectory = loadModelDialog.FileName;
+            ///          if (debugging) { debugBox.Text = "Loading Tagger"; debugBox.Update(); }
+            if (debugging) { debugBox.Text = "Current directory: " + Directory.GetCurrentDirectory(); debugBox.Update(); }
+            ///          if (debugging) { debugBox.Text = "Loading Tagger"; debugBox.Update(); }
+            tagger = new MaxentTagger(@"../../resources/english-left3words-distsim.tagger");
 
-                ///          if (debugging) { debugBox.Text = "Loading Tagger"; debugBox.Update(); }
-                if (debugging) { debugBox.Text = "Current directory: " + Directory.GetCurrentDirectory(); debugBox.Update(); }
-                ///          if (debugging) { debugBox.Text = "Loading Tagger"; debugBox.Update(); }
-                //          tagger = new MaxentTagger(modelsDirectory + @"\english-left3words-distsim.tagger");
-                if (debugging) { debugBox.Text = "Tagger directory: " + taggerDirectory; debugBox.Update(); }
-                tagger = new MaxentTagger(taggerDirectory);
+            /* Initialize mainTable */
+            mainTable.Columns.Add("Country", typeof(string));
+            mainTable.Columns.Add("Code", typeof(string));
+            mainTable.Columns.Add("Text", typeof(string));
+            mainTable.Columns.Add("TTR", typeof(double));
+            mainTable.Columns.Add("ContentWordRatio", typeof(double));
+            mainTable.Columns.Add("NounRatio", typeof(double));
+            mainTable.Columns.Add("VerbRatio", typeof(double));
+            mainTable.Columns.Add("AdjRatio", typeof(double));
+            mainTable.Columns.Add("AdvRatio", typeof(double));
 
 
-                /* Initialize mainTable */
-                mainTable.Columns.Add("Country", typeof(string));
-                mainTable.Columns.Add("Code", typeof(string));
-                mainTable.Columns.Add("Text", typeof(string));
-                mainTable.Columns.Add("TTR", typeof(double));
-                mainTable.Columns.Add("ContentWordRatio", typeof(double));
-                mainTable.Columns.Add("NounRatio", typeof(double));
-                mainTable.Columns.Add("VerbRatio", typeof(double));
-                mainTable.Columns.Add("AdjRatio", typeof(double));
-                mainTable.Columns.Add("AdvRatio", typeof(double));
+            UniqueConstraint custUnique = new UniqueConstraint(new DataColumn[] { mainTable.Columns["Code"] });
+            mainTable.Constraints.Add(custUnique);
 
+            dataGridView1.DataSource = mainTable;
+            dataGridView1.Columns["Text"].Visible = false;
 
-                UniqueConstraint custUnique = new UniqueConstraint(new DataColumn[] { mainTable.Columns["Code"] });
-                mainTable.Constraints.Add(custUnique);
+            dataGridView2.DataSource = mainTable;
+            dataGridView2.Columns["Text"].Visible = false;
 
-                dataGridView1.DataSource = mainTable;
-                dataGridView1.Columns["Text"].Visible = false;
-
-                dataGridView2.DataSource = mainTable;
-                dataGridView2.Columns["Text"].Visible = false;
-
-                foreach (DataColumn cl in mainTable.Columns)
-                {
-                    if (!cl.DataType.Equals(typeof(string)))
-                    {
-                        chart1_xBox.Items.Add(cl.ColumnName.ToString());
-                        chart1_yBox.Items.Add(cl.ColumnName.ToString());
-                    }
-                    else
-                    {
-                        categoryBox.Items.Add(cl.ColumnName.ToString());
-                    }
-                }
-                outputBox.Text = "Done...";
-                outputBox.Update();
-
-            }
-            else
+            foreach (DataColumn cl in mainTable.Columns)
             {
-                System.Windows.Forms.Application.Exit();
+                if (!cl.DataType.Equals(typeof(string)))
+                {
+                    chart1_xBox.Items.Add(cl.ColumnName.ToString());
+                    chart1_yBox.Items.Add(cl.ColumnName.ToString());
+                }
+                else
+                {
+                    categoryBox.Items.Add(cl.ColumnName.ToString());
+                }
             }
+            outputBox.Text = "Done...";
+            outputBox.Update();
         }
 
         private void backgroundWorker1_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)

@@ -59,5 +59,15 @@ namespace SLS302_Project.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] english_left3words_distsim {
+            get {
+                object obj = ResourceManager.GetObject("english_left3words_distsim", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
     }
 }

@@ -53,6 +53,7 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.coeffBox = new System.Windows.Forms.TextBox();
             this.categoryBox = new System.Windows.Forms.ComboBox();
             this.chart1_xBox = new System.Windows.Forms.ComboBox();
             this.drawGraphButton = new System.Windows.Forms.Button();
@@ -74,7 +75,6 @@
             this.excelFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.loadModelDialog = new System.Windows.Forms.OpenFileDialog();
             this.textFilesDialog = new System.Windows.Forms.OpenFileDialog();
-            this.coeffBox = new System.Windows.Forms.TextBox();
             this.contextMenuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -340,6 +340,17 @@
             this.chart1.TabIndex = 6;
             this.chart1.Text = "chart1";
             // 
+            // coeffBox
+            // 
+            this.coeffBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.coeffBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.coeffBox.Location = new System.Drawing.Point(2, 304);
+            this.coeffBox.Name = "coeffBox";
+            this.coeffBox.ReadOnly = true;
+            this.coeffBox.Size = new System.Drawing.Size(164, 13);
+            this.coeffBox.TabIndex = 11;
+            // 
             // categoryBox
             // 
             this.categoryBox.FormattingEnabled = true;
@@ -511,17 +522,6 @@
             this.textFilesDialog.DefaultExt = "txt";
             this.textFilesDialog.Filter = "Text Files (*.txt)|*.txt|All files (*.*)|*.*\"";
             this.textFilesDialog.Multiselect = true;
-            // 
-            // coeffBox
-            // 
-            this.coeffBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.coeffBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.coeffBox.Location = new System.Drawing.Point(2, 304);
-            this.coeffBox.Name = "coeffBox";
-            this.coeffBox.ReadOnly = true;
-            this.coeffBox.Size = new System.Drawing.Size(164, 13);
-            this.coeffBox.TabIndex = 11;
             // 
             // Form1
             // 
