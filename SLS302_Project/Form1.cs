@@ -1,6 +1,4 @@
-﻿// template for debugging: if (debugging) { debugBox.Text = ""; debugBox.Update(); }
-
-using System;
+﻿using System;
 using System.Windows.Forms;
 using edu.stanford.nlp.ling;
 using edu.stanford.nlp.tagger.maxent;
@@ -25,11 +23,10 @@ namespace SLS302_Project
         private string inputText = "";
         private string taggedInputText = "";
         private ArrayList wordList = new ArrayList();
-        //        private ArrayList lemmaList = new ArrayList();
         private double ttr = -1;
         private int[] wordCount = new int[4];
         private double[] ratios = new double[5];
-        private bool debugging = false;
+        private bool debugging = false;         //changing this to true creates a box on the top with useful info
         MaxentTagger tagger;
 
         DataSet set = new DataSet("AllFiles");
@@ -44,10 +41,13 @@ namespace SLS302_Project
            
         }
 
+        /// <summary>
+        /// Button no longer in use. Does nothing :-)
+        /// </summary>
         private void button1_Click(object sender, EventArgs e)
         {
             inputText = textBox1.Text;
-            taggedInputText = runPOS(inputText, debugBox);
+            taggedInputText = runPOS(inputText);
             wordList = writeWordList(taggedInputText);
             wordCount = countTags(wordList);
             ratios = getRatios(wordCount, wordList);
@@ -63,20 +63,25 @@ namespace SLS302_Project
 
         }
 
+        /// <summary>
+        /// When this Form loads, 
+        /// </summary>
         private void Form1_Shown(object sender, EventArgs e)
         {
+            /* If the the debug variable is set to true, a text box is visible so things can be written and shown.*/
             if (debugging)
                 debugBox.Visible = true;
             else
                 debugBox.Visible = false;
 
+
+            /* Load tagger file and create the tagger object */
             outputBox.Text = "Loading tagger...";
             outputBox.Update();
 
-            ///          if (debugging) { debugBox.Text = "Loading Tagger"; debugBox.Update(); }
             if (debugging) { debugBox.Text = "Current directory: " + Directory.GetCurrentDirectory(); debugBox.Update(); }
-            ///          if (debugging) { debugBox.Text = "Loading Tagger"; debugBox.Update(); }
             tagger = new MaxentTagger(@"../../resources/english-left3words-distsim.tagger");
+
 
             /* Initialize mainTable */
             mainTable.Columns.Add("Country", typeof(string));
@@ -93,12 +98,15 @@ namespace SLS302_Project
             UniqueConstraint custUnique = new UniqueConstraint(new DataColumn[] { mainTable.Columns["Code"] });
             mainTable.Constraints.Add(custUnique);
 
+            /* Set source for the Table view to mainTable*/
             dataGridView1.DataSource = mainTable;
             dataGridView1.Columns["Text"].Visible = false;
 
+            /* Set source for the table in Chart view to mainTable*/
             dataGridView2.DataSource = mainTable;
             dataGridView2.Columns["Text"].Visible = false;
 
+            /* Set source for the Chart view to mainTable */
             foreach (DataColumn cl in mainTable.Columns)
             {
                 if (!cl.DataType.Equals(typeof(string)))
@@ -111,29 +119,22 @@ namespace SLS302_Project
                     categoryBox.Items.Add(cl.ColumnName.ToString());
                 }
             }
+
+            /* Done with everything in loading form */
             outputBox.Text = "Done...";
             outputBox.Update();
         }
 
-        private void backgroundWorker1_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
-        {
-        //      Console.Write("Doing it fam");
-        //      text1 = runPOS(textBox1.Text);
-        }
 
-        private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-        //      richTextBox1.Text = text1;
-        //      button1.Text = "Tag";
-        }
+        /**********************************************************************************/
+        /* These do nothing :-) */
+        private void backgroundWorker1_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e) {}
+        private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e) {}
+        private void contextMenuStrip1_Opening(object sender, CancelEventArgs e){}
 
-        private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
-        {
-
-        }
-
+        /* These used to do stuff, but now also do nothing. :-) */
         private void exportButton_Click(object sender, EventArgs e)
-        {
+        { /*
             Microsoft.Office.Interop.Excel.Application oXL;
             _Workbook oWB;
             _Worksheet oSheet;
@@ -184,13 +185,12 @@ namespace SLS302_Project
                 errorMessage = string.Concat(errorMessage, theException.Source);
 
                 MessageBox.Show(errorMessage, "Error");
-            }
+            } */
         }
-
         private string writeReport()
         {
             string outputstring = "";
-
+            /*
             outputstring =
                      "Number of unique...\n" +
                      "words: " + wordList.size() + "\n" +
@@ -206,18 +206,21 @@ namespace SLS302_Project
                      "adverbs: " + ratios[3] + "%\n";
 
 
-
-            return outputstring;
+            */
+            return outputstring; 
         }
+        
+        /**********************************************************************************/
 
+        /// <summary>
+        /// This opens text files, sticks the data into mainTable, and updates the Table view
+        /// </summary>
         private void openFileButton_Click(object sender, EventArgs e)
         {
             debugBox.Text = "showing dialog";
             debugBox.Update();
 
             DialogResult result = textFilesDialog.ShowDialog(); // Show the dialog.
-
-            DataRow row;
 
             if (result == DialogResult.OK) // Test result.
             {
@@ -231,47 +234,42 @@ namespace SLS302_Project
                 debugBox.Text = "Gonna process files";
                 debugBox.Update();
 
-      //          try
-      //          {
+                DataRow row;
 
-                    int i = 1;
-                    foreach (string f in files)
+                int i = 1;
+                foreach (string f in files)
+                {
+                    row = mainTable.NewRow();
+                    text = System.IO.File.ReadAllText(f);
+
+                    outputBox.Text = "Processing file " + i + " of " + (files.Length).ToString() + "...";
+                    outputBox.Update();
+
+                    processText(text);
+
+                    filePath = f.Split('\\');
+                    fileName = filePath[filePath.Length-1].Split('_');                     
+
+                    row["Country"] = fileName[1]; // Country
+                    row["Code"] = "W_" + fileName[1] + "_" + fileName[3]; // Code
+                    row["Text"] = inputText;
+                    row["TTR"] = ttr.ToString();  // TTR
+                    row["NounRatio"] = ratios[0];  // Noun Ratio
+                    row["VerbRatio"] = ratios[1]; // Verb Ratio
+                    row["AdjRatio"] = ratios[2]; // Adj Ratio
+                    row["AdvRatio"] = ratios[3]; //Adv Ratio 
+                    row["ContentWordRatio"] = ratios[4];      
+
+                    try
                     {
-                        row = mainTable.NewRow();
-                        text = System.IO.File.ReadAllText(f);
+                        mainTable.Rows.Add(row);
+                    } catch(System.Data.ConstraintException) {}                    
 
-                        outputBox.Text = "Processing file " + i + " of " + (files.Length).ToString() + "...";
-                        outputBox.Update();
+                    i++;
+                }
 
-                        processText(text);
-
-                        filePath = f.Split('\\');
-                        fileName = filePath[filePath.Length-1].Split('_');                     
-
-                        row["Country"] = fileName[1]; // Country
-                        row["Code"] = "W_" + fileName[1] + "_" + fileName[3]; // Code
-                        row["Text"] = inputText;
-                        row["TTR"] = ttr.ToString();  // TTR
-                        row["NounRatio"] = ratios[0];  // Noun Ratio
-                        row["VerbRatio"] = ratios[1]; // Verb Ratio
-                        row["AdjRatio"] = ratios[2]; // Adj Ratio
-                        row["AdvRatio"] = ratios[3]; //Adv Ratio 
-                        row["ContentWordRatio"] = ratios[4];      
-
-                        try
-                        {
-                            mainTable.Rows.Add(row);
-                        } catch(System.Data.ConstraintException) {}
-                        
-                       
-
-
-                        i++;
-                    }
                 dataGridView1.Update();
-               // } catch (System.IO.IOException) { }
-                
-              
+                              
                 outputBox.Text = "Done.";
                 outputBox.Update();
                 
@@ -279,13 +277,17 @@ namespace SLS302_Project
 
         }
 
+        /// <summary>
+        /// Calls each function to analyze essay
+        /// </summary>
+        /// <param name="text"> The essay to be analyzed </param>
         private void processText(string text)
         {
             if (debugging) { debugBox.Text = "Getting input text"; debugBox.Update(); }
             inputText = text;
 
             if (debugging){debugBox.Text = "Running POS Tagger"; debugBox.Update();}
-            taggedInputText = runPOS(inputText, debugBox);
+            taggedInputText = runPOS(inputText);
 
             if (debugging) { debugBox.Text = "Writing word list"; debugBox.Update(); }
             wordList = writeWordList(taggedInputText);
@@ -301,23 +303,28 @@ namespace SLS302_Project
             
         }
 
+        /*********************************/
+        /* More old functions that do nothing :-) */
+
         private void addToExcelSheet(Microsoft.Office.Interop.Excel._Worksheet oSheet, int row)
         {
-
+            /*
                 //Add data
                 oSheet.Cells[row, 9] = ratios[0];
                 oSheet.Cells[row, 10] = ratios[1];
                 oSheet.Cells[row, 11] = ratios[2];
                 oSheet.Cells[row, 12] = ratios[3];
                // oSheet.Cells[row, 13] = "TTR";
-
+               */
         }
 
-        private void outputBox_TextChanged(object sender, EventArgs e)
-        {
+        private void outputBox_TextChanged(object sender, EventArgs e){}
 
-        }
+        /*********************************/
 
+        /// <summary>
+        /// When a cell on table is clicked, the essay text is shown on the side panel.
+        /// </summary>
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             int rowIndex = e.RowIndex;
@@ -325,6 +332,9 @@ namespace SLS302_Project
                essayBox.Text = mainTable.Rows[rowIndex]["Text"].ToString();
         }
 
+        /// <summary>
+        /// Loads additional information about each essay from an excel sheet; most importantly the VST and CEFR scores.
+        /// </summary>
         private void excelSheetButton_Click(object sender, EventArgs e)
         {
             DialogResult result = excelFileDialog.ShowDialog();
@@ -367,10 +377,6 @@ namespace SLS302_Project
                         dtFinal.Merge(tmp);
                     }
 
-                    //      if (debugging) { debugBox.Text = "Adding new columns to dtFinal"; debugBox.Update(); }
-                    //        dtFinal = addComparisonColumns(dtFinal);
-
-
                     if (debugging) { debugBox.Text = "Adding columns to mainTable from dtFinal"; debugBox.Update(); }
                     foreach (DataColumn cl in dtFinal.Columns)
                     {
@@ -399,7 +405,6 @@ namespace SLS302_Project
 
                         if (foundRows.Length > 0)
                         {
-                            //   debugBox.Text +=  string.Join(", ", foundRows[0].ItemArray) + "\n\n";
                             foreach (DataColumn cl in foundRows[0].Table.Columns)
                             {
                                 if (debugging) { debugBox.Text = "Adding column " + cl.ColumnName + " to row " + row["Code"]; debugBox.Update(); }
@@ -422,18 +427,16 @@ namespace SLS302_Project
                     outputBox.Text = "!!! Could not load data sheet. It may be open in another program.";
                     outputBox.Update();
                 }
-              
-
-
-
-
-                //     dataGridView2.DataSource = dtFinal; // dataset */
-
 
             }
         }
 
-        public string runPOS(string text, System.Windows.Forms.TextBox debugBox)
+        /// <summary>
+        /// Runs the POS Tagger on the text
+        /// </summary>
+        /// <param name="text"></param>
+        /// <returns>The tagged version of the text. </returns>
+        public string runPOS(string text)
         {
             var text2 = "";
 
@@ -447,11 +450,16 @@ namespace SLS302_Project
                 text2 += Sentence.listToString(taggedSentence, false);
             }
 
-
             return text2;
         }
 
-        public  ArrayList writeWordList(string text)
+        /// <summary>
+        /// Writes out a list of each unique word in the text. This uses a class called VocabWord, which 
+        /// contains a word as well as its part of speech.
+        /// </summary>
+        /// <param name="text">Essay text</param>
+        /// <returns>ArrayList of VocabWords containing each word in the text and its POS</returns>
+        public ArrayList writeWordList(string text)
         {
             string[] words = text.Split(new Char[] { ',', ' ', '.', '\n' });
             string[] splitS;
@@ -467,7 +475,13 @@ namespace SLS302_Project
             return returnList;
         }
 
-        public  Boolean inList(string s, ArrayList al)
+        /// <summary>
+        /// Checks if the word in the text is already in the word list
+        /// </summary>
+        /// <param name="s">A word in the text</param>
+        /// <param name="al">ArrayList of words in the text so far</param>
+        /// <returns>True if the word is there already, false if not</returns>
+        public Boolean inList(string s, ArrayList al)
         {
             Boolean toReturn = false;
             foreach (VocabWord vw in al)
@@ -479,28 +493,38 @@ namespace SLS302_Project
             return toReturn;
         }
 
+        /// <summary>
+        /// Calculates the Type-Token Ratio of the text
+        /// </summary>
+        /// <param name="text">Essay text</param>
+        /// <param name="wl">list of VocabWords </param>
+        /// <returns>The type token ratio of the text</returns>
         public  double getTTR(string text, ArrayList wl)
         {
             double types = wl.size();
             double tokens = (text.Split(new Char[] { ',', ' ', '.', '\n' })).Length;
 
             return Math.Round(100.0 * types / (double) tokens, 2);
-           // return Math.Round(100.0 * types / tokens, 2);
         }
 
-
+        /* Another no longer used function */
         public  string listVocab(ArrayList list)
-        {
+        { 
             string output = "";
-
+            /*
             foreach (VocabWord vw in list)
             {
                 output += vw.getWord() + "\t" + vw.getPOS() + "\n";
             }
-
+            */
             return output;
         }
 
+        /// <summary>
+        /// Iterates through the word list and counts the number of each part of speech
+        /// </summary>
+        /// <param name="list">list of VocabWords</param>
+        /// <returns>An array of integers representing the count of each POS</returns>
         public  int[] countTags(ArrayList list)
         {
             int verbCount = 0;
@@ -581,7 +605,13 @@ namespace SLS302_Project
             return toReturn;
         }
 
-        public  double[] getRatios(int[] wc, ArrayList wl)
+        /// <summary>
+        /// Calculates the ratio of each part of speech to the total size of the vocabulary
+        /// </summary>
+        /// <param name="wc">An array of integers representing the count of each POS</param>
+        /// <param name="wl">The list of VocabWords</param>
+        /// <returns>An array of doubles representing the ratio of each part of speech to the total size of the vocabulary</returns>
+        public double[] getRatios(int[] wc, ArrayList wl)
         {
             double[] toReturn = new double[5];
 
@@ -595,7 +625,13 @@ namespace SLS302_Project
             return toReturn;
         }
 
-        /* Credit: http://stackoverflow.com/questions/17447817/correlation-of-two-arrays-in-c-sharp */
+        /// <summary>
+        /// Computes the coefficient of two arrays
+        /// Credit: http://stackoverflow.com/questions/17447817/correlation-of-two-arrays-in-c-sharp */
+        /// </summary>
+        /// <param name="values1">The first array</param>
+        /// <param name="values2">The second array</param>
+        /// <returns></returns>
         public double ComputeCoeff(double[] values1, double[] values2)
         {
             if (values1.Length != values2.Length)
@@ -614,6 +650,9 @@ namespace SLS302_Project
             return result;
         }
 
+        /// <summary>
+        /// A class that contains a word and its part of speech, both strings
+        /// </summary>
         private class VocabWord
         {
             private string word;
@@ -628,11 +667,10 @@ namespace SLS302_Project
             public string getPOS() { return pos; }
         }
 
-        private void splitContainer1_Panel2_Paint(object sender, PaintEventArgs e)
-        {
+        /* More nothing :-) */
+        private void splitContainer1_Panel2_Paint(object sender, PaintEventArgs e){}
 
-        }
-
+        /* Draws the graph with axes being the two dropdowns */
         private void drawGraphButton_Click(object sender, EventArgs e)
         {
             outputBox.Text = "Drawing graph...";

@@ -50,11 +50,6 @@ C:\Users\Kirk\Documents\GitHub\CorpusTagger\SLS302_Project\obj\Release\POS Tagge
 C:\Users\Kirk\Documents\GitHub\CorpusTagger\SLS302_Project\obj\Release\POS Tagger.application
 C:\Users\Kirk\Documents\GitHub\CorpusTagger\SLS302_Project\obj\Release\POS Tagger.exe
 C:\Users\Kirk\Documents\GitHub\CorpusTagger\SLS302_Project\obj\Release\POS Tagger.pdb
-C:\Users\Kirk\documents\visual studio 2015\Projects\SLS302_Project\SLS302_Project\bin\Release\POS Tagger.exe.config
-C:\Users\Kirk\documents\visual studio 2015\Projects\SLS302_Project\SLS302_Project\bin\Release\POS Tagger.exe.manifest
-C:\Users\Kirk\documents\visual studio 2015\Projects\SLS302_Project\SLS302_Project\bin\Release\POS Tagger.application
-C:\Users\Kirk\documents\visual studio 2015\Projects\SLS302_Project\SLS302_Project\bin\Release\POS Tagger.exe
-C:\Users\Kirk\documents\visual studio 2015\Projects\SLS302_Project\SLS302_Project\bin\Release\POS Tagger.pdb
 C:\Users\Kirk\documents\visual studio 2015\Projects\SLS302_Project\SLS302_Project\bin\Release\ejml-0.23.dll
 C:\Users\Kirk\documents\visual studio 2015\Projects\SLS302_Project\SLS302_Project\bin\Release\Excel.dll
 C:\Users\Kirk\documents\visual studio 2015\Projects\SLS302_Project\SLS302_Project\bin\Release\ICSharpCode.SharpZipLib.dll
@@ -95,9 +90,15 @@ C:\Users\Kirk\documents\visual studio 2015\Projects\SLS302_Project\SLS302_Projec
 C:\Users\Kirk\documents\visual studio 2015\Projects\SLS302_Project\SLS302_Project\bin\Release\Excel.pdb
 C:\Users\Kirk\documents\visual studio 2015\Projects\SLS302_Project\SLS302_Project\obj\Release\SLS302_Project.csproj.ResolveComReference.cache
 C:\Users\Kirk\documents\visual studio 2015\Projects\SLS302_Project\SLS302_Project\obj\Release\SLS302_Project.Form1.resources
-C:\Users\Kirk\documents\visual studio 2015\Projects\SLS302_Project\SLS302_Project\obj\Release\SLS302_Project.Properties.Resources.resources
 C:\Users\Kirk\documents\visual studio 2015\Projects\SLS302_Project\SLS302_Project\obj\Release\SLS302_Project.csproj.GenerateResource.Cache
-C:\Users\Kirk\documents\visual studio 2015\Projects\SLS302_Project\SLS302_Project\obj\Release\POS Tagger.exe.manifest
-C:\Users\Kirk\documents\visual studio 2015\Projects\SLS302_Project\SLS302_Project\obj\Release\POS Tagger.application
-C:\Users\Kirk\documents\visual studio 2015\Projects\SLS302_Project\SLS302_Project\obj\Release\POS Tagger.exe
-C:\Users\Kirk\documents\visual studio 2015\Projects\SLS302_Project\SLS302_Project\obj\Release\POS Tagger.pdb
+C:\Users\Kirk\documents\visual studio 2015\Projects\SLS302_Project\SLS302_Project\bin\Release\POSTagger.exe.config
+C:\Users\Kirk\documents\visual studio 2015\Projects\SLS302_Project\SLS302_Project\bin\Release\POSTagger.exe.manifest
+C:\Users\Kirk\documents\visual studio 2015\Projects\SLS302_Project\SLS302_Project\bin\Release\POSTagger.application
+C:\Users\Kirk\documents\visual studio 2015\Projects\SLS302_Project\SLS302_Project\bin\Release\POSTagger.exe
+C:\Users\Kirk\documents\visual studio 2015\Projects\SLS302_Project\SLS302_Project\bin\Release\POSTagger.pdb
+C:\Users\Kirk\documents\visual studio 2015\Projects\SLS302_Project\SLS302_Project\obj\Release\SLS302_Project.csprojResolveAssemblyReference.cache
+C:\Users\Kirk\documents\visual studio 2015\Projects\SLS302_Project\SLS302_Project\obj\Release\POSTagger.Properties.Resources.resources
+C:\Users\Kirk\documents\visual studio 2015\Projects\SLS302_Project\SLS302_Project\obj\Release\POSTagger.exe.manifest
+C:\Users\Kirk\documents\visual studio 2015\Projects\SLS302_Project\SLS302_Project\obj\Release\POSTagger.application
+C:\Users\Kirk\documents\visual studio 2015\Projects\SLS302_Project\SLS302_Project\obj\Release\POSTagger.exe
+C:\Users\Kirk\documents\visual studio 2015\Projects\SLS302_Project\SLS302_Project\obj\Release\POSTagger.pdb

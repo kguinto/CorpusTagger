@@ -1,5 +1,4 @@
 C:\Users\Kirk\Documents\Visual Studio 2015\Projects\SLS302_Project\SLS302_Project\obj\Debug\SLS302_Project.Form1.resources
-C:\Users\Kirk\Documents\Visual Studio 2015\Projects\SLS302_Project\SLS302_Project\obj\Debug\SLS302_Project.Properties.Resources.resources
 C:\Users\Kirk\Documents\Visual Studio 2015\Projects\SLS302_Project\SLS302_Project\obj\Debug\SLS302_Project.csproj.GenerateResource.Cache
 C:\Users\Kirk\Documents\Visual Studio 2015\Projects\SLS302_Project\SLS302_Project\bin\Debug\IKVM.AWT.WinForms.dll
 C:\Users\Kirk\Documents\Visual Studio 2015\Projects\SLS302_Project\SLS302_Project\bin\Debug\IKVM.OpenJDK.Beans.dll
@@ -30,15 +29,6 @@ C:\Users\Kirk\Documents\Visual Studio 2015\Projects\SLS302_Project\SLS302_Projec
 C:\Users\Kirk\Documents\Visual Studio 2015\Projects\SLS302_Project\SLS302_Project\bin\Debug\IKVM.Runtime.dll
 C:\Users\Kirk\Documents\Visual Studio 2015\Projects\SLS302_Project\SLS302_Project\bin\Debug\IKVM.Runtime.JNI.dll
 C:\Users\Kirk\Documents\Visual Studio 2015\Projects\SLS302_Project\SLS302_Project\obj\Debug\SLS302_Project.csprojResolveAssemblyReference.cache
-C:\Users\Kirk\Documents\Visual Studio 2015\Projects\SLS302_Project\SLS302_Project\bin\Debug\POS Tagger.exe.config
-C:\Users\Kirk\Documents\Visual Studio 2015\Projects\SLS302_Project\SLS302_Project\bin\Debug\POS Tagger.exe.manifest
-C:\Users\Kirk\Documents\Visual Studio 2015\Projects\SLS302_Project\SLS302_Project\bin\Debug\POS Tagger.application
-C:\Users\Kirk\Documents\Visual Studio 2015\Projects\SLS302_Project\SLS302_Project\bin\Debug\POS Tagger.exe
-C:\Users\Kirk\Documents\Visual Studio 2015\Projects\SLS302_Project\SLS302_Project\bin\Debug\POS Tagger.pdb
-C:\Users\Kirk\Documents\Visual Studio 2015\Projects\SLS302_Project\SLS302_Project\obj\Debug\POS Tagger.exe.manifest
-C:\Users\Kirk\Documents\Visual Studio 2015\Projects\SLS302_Project\SLS302_Project\obj\Debug\POS Tagger.application
-C:\Users\Kirk\Documents\Visual Studio 2015\Projects\SLS302_Project\SLS302_Project\obj\Debug\POS Tagger.exe
-C:\Users\Kirk\Documents\Visual Studio 2015\Projects\SLS302_Project\SLS302_Project\obj\Debug\POS Tagger.pdb
 C:\Users\Kirk\Documents\Visual Studio 2015\Projects\SLS302_Project\SLS302_Project\bin\Debug\ejml-0.23.dll
 C:\Users\Kirk\Documents\Visual Studio 2015\Projects\SLS302_Project\SLS302_Project\bin\Debug\javax.json.dll
 C:\Users\Kirk\Documents\Visual Studio 2015\Projects\SLS302_Project\SLS302_Project\bin\Debug\joda-time.dll
@@ -102,3 +92,13 @@ C:\Users\Kirk\Documents\GitHub\CorpusTagger\SLS302_Project\bin\Debug\xom.dll
 C:\Users\Kirk\Documents\GitHub\CorpusTagger\SLS302_Project\bin\Debug\Excel.pdb
 C:\Users\Kirk\Documents\GitHub\CorpusTagger\SLS302_Project\obj\Debug\POS Tagger.exe.manifest
 C:\Users\Kirk\Documents\GitHub\CorpusTagger\SLS302_Project\obj\Debug\POS Tagger.application
+C:\Users\Kirk\documents\visual studio 2015\Projects\SLS302_Project\SLS302_Project\bin\Debug\POSTagger.exe.config
+C:\Users\Kirk\documents\visual studio 2015\Projects\SLS302_Project\SLS302_Project\bin\Debug\POSTagger.exe.manifest
+C:\Users\Kirk\documents\visual studio 2015\Projects\SLS302_Project\SLS302_Project\bin\Debug\POSTagger.application
+C:\Users\Kirk\documents\visual studio 2015\Projects\SLS302_Project\SLS302_Project\bin\Debug\POSTagger.exe
+C:\Users\Kirk\documents\visual studio 2015\Projects\SLS302_Project\SLS302_Project\bin\Debug\POSTagger.pdb
+C:\Users\Kirk\documents\visual studio 2015\Projects\SLS302_Project\SLS302_Project\obj\Debug\POSTagger.Properties.Resources.resources
+C:\Users\Kirk\documents\visual studio 2015\Projects\SLS302_Project\SLS302_Project\obj\Debug\POSTagger.exe.manifest
+C:\Users\Kirk\documents\visual studio 2015\Projects\SLS302_Project\SLS302_Project\obj\Debug\POSTagger.application
+C:\Users\Kirk\documents\visual studio 2015\Projects\SLS302_Project\SLS302_Project\obj\Debug\POSTagger.exe
+C:\Users\Kirk\documents\visual studio 2015\Projects\SLS302_Project\SLS302_Project\obj\Debug\POSTagger.pdb
